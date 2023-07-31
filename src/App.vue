@@ -14,6 +14,11 @@ export default {
     dailyWeather: [],
     currentWeather: null
   }),
+  mounted: function () {
+    navigator.geolocation.getCurrentPosition(async position => {
+      await this.getCurrentWeather(position.coords)
+    })
+  },
   methods: {
     async getCurrentWeather(coords) {
       const res = await axios.get(
